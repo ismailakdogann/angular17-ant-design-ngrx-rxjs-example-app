@@ -1,0 +1,37 @@
+<nz-page-header
+  class="site-page-header ma-0 pa-0"
+  nzTitle="OFFER LIST"
+></nz-page-header>
+
+<nz-divider class="mt-10 mb-30"></nz-divider>
+
+<nz-table #offersTable nzBordered [nzData]="offers$ | async">
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>MovementType</th>
+      <th>Incoterms</th>
+      <th>Place</th>
+      <th>PackageType</th>
+      <th>Unit1</th>
+      <th>Unit2</th>
+      <th>Currency</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of offersTable.data">
+      <td>{{data.mode}}</td>
+      <td>{{data.movementType}}</td>
+      <td>{{data.incoterms}}</td>
+      <td>{{data.place}}</td>
+      <td>{{data.packageType}}</td>
+      <td>{{data.unit1}}</td>
+      <td>{{data.unit2}}</td>
+      <td>{{data.currency}}</td>
+      <td>
+        <a><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

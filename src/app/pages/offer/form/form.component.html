@@ -1,0 +1,463 @@
+<nz-page-header
+  class="site-page-header ma-0 pa-0"
+  nzTitle="OFFER FORM"
+></nz-page-header>
+
+<nz-divider class="mt-10 mb-30"></nz-divider>
+
+<form
+  nz-form
+  [nzLayout]="(formItemLayout | async) ? 'horizontal' : 'vertical'"
+  [formGroup]="validateForm"
+  (ngSubmit)="submitForm()"
+>
+  <!-- #region Mode -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Mode</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorMode"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="mode" nzPlaceHolder="Mode">
+            <nz-option nzValue="LCL" nzLabel="LCL"></nz-option>
+            <nz-option nzValue="FCL" nzLabel="FCL"></nz-option>
+            <nz-option nzValue="Air" nzLabel="Air"></nz-option> </nz-select
+        ></nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Mode Selection"
+            [nzPopoverContent]="contentTemplate"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span></a
+        ></nz-col>
+      </nz-row>
+      <ng-template #userErrorMode let-control>
+        <ng-container *ngIf="control.hasError('required')"
+          >Please select Mode!</ng-container
+        >
+      </ng-template>
+      <ng-template #contentTemplate>
+        <div>
+          <p>LCL, FCL, Air</p>
+        </div>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region Movement Type -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Movement Type</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorMovement"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select
+            formControlName="movementType"
+            nzPlaceHolder="Movement Type"
+          >
+            <nz-option
+              nzValue="Door to Door"
+              nzLabel="Door to Door"
+            ></nz-option>
+            <nz-option
+              nzValue="Port to Door"
+              nzLabel="Port to Door"
+            ></nz-option>
+            <nz-option
+              nzValue="Door to Port"
+              nzLabel="Door to Port"
+            ></nz-option>
+            <nz-option
+              nzValue="Port to Port"
+              nzLabel="Port to Port"
+            ></nz-option>
+          </nz-select>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Movement Type Selection"
+            [nzPopoverContent]="contentTemplate2"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+        </nz-col>
+      </nz-row>
+      <ng-template #contentTemplate2>
+        <div>
+          <p>Door to Door, Port to Door,</p>
+          <p>Door to Port, Port to Port</p>
+        </div>
+      </ng-template>
+      <ng-template #userErrorMovement let-control>
+        <ng-container *ngIf="control.hasError('required')"
+          >Please select Movement Type!</ng-container
+        >
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region Incoterms -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Incoterms</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorIncoterm"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="incoterms" nzPlaceHolder="Incoterms">
+            <nz-option nzValue="DDP" nzLabel="Delivered Duty Paid"></nz-option>
+            <nz-option
+              nzValue="DAT"
+              nzLabel="Delivered At Place"
+            ></nz-option> </nz-select
+        ></nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Incoterms Selection"
+            [nzPopoverContent]="contentTemplate3"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+        </nz-col>
+      </nz-row>
+
+      <ng-template #contentTemplate3>
+        <div>
+          <p>Delivered Duty Paid (DDP),</p>
+          <p>Delivered At Place (DAT)</p>
+        </div>
+      </ng-template>
+
+      <ng-template #userErrorIncoterm let-control>
+        <ng-container *ngIf="control.hasError('required')"
+          >Please select Incoterm!</ng-container
+        >
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region Countries-Cities -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Countries-Cities</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorPlace"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <div class="example-input">
+            <nz-input-group nzSize="large" [nzSuffix]="suffixIcon">
+              <input
+                placeholder="Search Place"
+                nz-input
+                formControlName="place"
+                [nzAutocomplete]="auto"
+              />
+            </nz-input-group>
+            <ng-template #suffixIcon>
+              <span nz-icon nzType="search"></span>
+            </ng-template>
+            <nz-autocomplete #auto>
+              <nz-auto-optgroup
+                *ngFor="let group of optionGroups"
+                [nzLabel]="groupTitle"
+              >
+                <ng-template #groupTitle>
+                  <span>{{ group.title }}</span>
+                </ng-template>
+                <nz-auto-option
+                  *ngFor="let option of group.children"
+                  [nzLabel]="option.title"
+                  [nzValue]="option.title"
+                >
+                  {{ option.title }}
+                </nz-auto-option>
+              </nz-auto-optgroup>
+            </nz-autocomplete>
+          </div>
+          <ng-template #userErrorPlace let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please select Place!</ng-container
+            >
+          </ng-template>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Countries-Cities Selection"
+            [nzPopoverContent]="contentTemplate4"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+          <ng-template #contentTemplate4>
+            <div>
+              <p>
+                <b>USA</b>:<br />
+                New York, Los Angeles, Miami, Minnesota
+              </p>
+              <p>
+                <b>China</b>:<br />
+                Beijing, Shanghai
+              </p>
+              <p>
+                <b>Turkey</b>:<br />
+                Istanbul, Izmir
+              </p>
+            </div>
+          </ng-template>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region Package Type -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Package Type</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorPackageType"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="packageType" nzPlaceHolder="Package Type">
+            <nz-option nzValue="Pallets" nzLabel="Pallets"></nz-option>
+            <nz-option nzValue="Boxes" nzLabel="Boxes"></nz-option>
+            <nz-option nzValue="Cartons" nzLabel="Cartons"></nz-option>
+          </nz-select>
+          <ng-template #userErrorPackageType let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please select Package Type!</ng-container
+            >
+          </ng-template>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Package Type Selection"
+            [nzPopoverContent]="contentTemplate5"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+          <ng-template #contentTemplate5>
+            <div>
+              <p>Pallets, Boxes, Cartons</p>
+            </div>
+          </ng-template>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region unit1 -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Unit1</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorUnit1"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="unit1" nzPlaceHolder="Unit1">
+            <nz-option nzValue="CM" nzLabel="CM"></nz-option>
+            <nz-option nzValue="IN" nzLabel="IN"></nz-option>
+          </nz-select>
+          <ng-template #userErrorUnit1 let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please select Unit1!</ng-container
+            >
+          </ng-template>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Unit1 Selection"
+            [nzPopoverContent]="contentTemplate6"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+          <ng-template #contentTemplate6>
+            <div>
+              <p>CM, IN</p>
+            </div>
+          </ng-template>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region unit2 -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Unit2</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorUnit2"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="unit2" nzPlaceHolder="Unit2">
+            <nz-option nzValue="KG" nzLabel="KG"></nz-option>
+            <nz-option nzValue="LB" nzLabel="LB"></nz-option>
+          </nz-select>
+          <ng-template #userErrorUnit2 let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please select Unit2!</ng-container
+            >
+          </ng-template>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Unit2 Selection"
+            [nzPopoverContent]="contentTemplate7"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+          <ng-template #contentTemplate7>
+            <div>
+              <p>KG, LB</p>
+            </div>
+          </ng-template>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <!-- #region currency -->
+  <nz-form-item class="mb-30">
+    <nz-form-label [nzSpan]="4" [nzLabelAlign]="'left'" nzRequired
+      >Currency</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="10"
+      nzHasFeedback
+      nzValidatingTip="Validating..."
+      [nzErrorTip]="userErrorCurrency"
+    >
+      <nz-row>
+        <nz-col nzFlex="auto" class="pr-15">
+          <nz-select formControlName="currency" nzPlaceHolder="Currency">
+            <nz-option nzValue="USD" nzLabel="US Dollar"></nz-option>
+            <nz-option nzValue="CNY" nzLabel="Chinese Yuan"></nz-option>
+            <nz-option nzValue="TRY" nzLabel="Turkish Lira"></nz-option>
+          </nz-select>
+          <ng-template #userErrorCurrency let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please select Currency!</ng-container
+            >
+          </ng-template>
+        </nz-col>
+        <nz-col>
+          <a
+            nz-button
+            nz-popover
+            nzPopoverTitle="Currency Selection"
+            [nzPopoverContent]="contentTemplate8"
+            nzPopoverPlacement="right"
+            nzType="default"
+            nzShape="circle"
+          >
+            <span nz-icon nzType="info"></span>
+          </a>
+          <ng-template #contentTemplate8>
+            <div>
+              <p>
+                USD - US Dollar,<br />
+                CNY - Chinese Yuan,<br />
+                TRY - Turkish Lira
+              </p>
+            </div>
+          </ng-template>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- #endregion -->
+
+  <nz-divider class="mt-10 mb-30"></nz-divider>
+
+  <nz-form-item>
+    <nz-form-control>
+      <nz-row nzJustify="space-between">
+        <nz-col>
+          <button nz-button (click)="resetForm($event)">Reset</button>
+        </nz-col>
+        <nz-col>
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">
+            Submit
+          </button>
+        </nz-col>
+      </nz-row>
+    </nz-form-control>
+  </nz-form-item>
+</form>
